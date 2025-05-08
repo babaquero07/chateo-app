@@ -1,0 +1,50 @@
+@reference "tailwindcss";
+
+.container.show-chatbot #chatbot-toggler {
+  @apply hidden;
+}
+
+#chatbot-toggler span {
+  @apply text-white absolute;
+}
+
+#chatbot-toggler span:last-child,
+.container.show-chatbot #chatbot-toggler span:first-child {
+  @apply opacity-0;
+}
+
+.container.show-chatbot #chatbot-toggler span:last-child {
+  @apply opacity-100;
+}
+
+.chatbot-popup {
+  @apply fixed w-[420px] opacity-0 right-9 bottom-[90px] pointer-events-none scale-[20%] overflow-hidden bg-white rounded-lg transform origin-bottom-right shadow-lg transition-all duration-100;
+}
+
+.container.show-chatbot .chatbot-popup {
+  @apply opacity-100 pointer-events-auto scale-100;
+}
+
+.chatbot-popup .chat-header {
+  @apply flex p-5 bg-[#00558F] justify-between items-center;
+}
+
+.chat-header .header-info {
+  @apply flex gap-2 items-center;
+}
+
+.header-info .logo-text {
+  @apply text-white font-semibold text-xl leading-6 tracking-tighter;
+}
+
+.chat-header button {
+  @apply border-none h-10 w-10 text-white cursor-pointer p-2 -mr-2 rounded-full bg-none transition-all duration-200;
+}
+
+.chat-header button:hover {
+  @apply bg-[#00558F];
+}
+
+.chat-body {
+  @apply flex flex-col gap-4 h-[460px] overflow-y-auto mb-20 p-5;
+}
