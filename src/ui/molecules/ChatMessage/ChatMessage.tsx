@@ -6,7 +6,7 @@ interface ChatMessageProps {
   chat: {
     role: string;
     text: string;
-    isError: boolean;
+    isError?: boolean;
     hideInChat: boolean;
   };
 }

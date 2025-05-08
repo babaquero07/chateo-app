@@ -8,10 +8,17 @@ import { FaArrowDown } from "react-icons/fa";
 
 import "./App.css";
 
+export interface ChatHistory {
+  hideInChat: boolean;
+  role: string;
+  text: string;
+  isError?: boolean;
+}
+
 const App = () => {
   const chatBodyRef = useRef(null);
   const [showChatbot, setShowChatbot] = useState(true);
-  const [chatHistory, setChatHistory] = useState([
+  const [chatHistory, setChatHistory] = useState<ChatHistory[]>([
     {
       hideInChat: true,
       role: "model",
@@ -19,21 +26,23 @@ const App = () => {
     },
   ]);
 
-  const generateBotResponse = async (history) => {
+  const generateBotResponse = async (history: ChatHistory[]) => {
     // Helper function to update chat history
-    const updateHistory = (text, isError = false) => {
+    const updateHistory = (text: string, isError = false) => {
       setChatHistory((prev) => [
-        ...prev.filter((msg) => msg.text != "Thinking..."),
-        { role: "model", text, isError },
+        ...prev.filter((msg) => msg.text != "..."),
+        { role: "model", text, isError, hideInChat: false },
       ]);
     };
-
     // Format chat history for API request
-    history = history.map(({ role, text }) => ({ role, parts: [{ text }] }));
+    const formattedHistory = history.map(({ role, text }) => ({
+      role,
+      parts: [{ text }],
+    }));
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ contents: history }),
+      body: JSON.stringify({ contents: formattedHistory }),
     };
 
     try {
@@ -44,7 +53,7 @@ const App = () => {
       );
       const data = await response.json();
       if (!response.ok)
-        throw new Error(data?.error.message || "Something went wrong!");
+        throw new Error(data?.error.message || "Algo salió mal!");
 
       // Clean and update chat history with bot's response
       const apiResponseText = data.candidates[0].content.parts[0].text
@@ -53,16 +62,22 @@ const App = () => {
       updateHistory(apiResponseText);
     } catch (error) {
       // Update chat history with the error message
-      updateHistory(error.message, true);
+      updateHistory(
+        error instanceof Error ? error.message : "Algo salió mal!",
+        true
+      );
     }
   };
 
   useEffect(() => {
     // Auto-scroll whenever chat history updates
-    chatBodyRef.current.scrollTo({
-      top: chatBodyRef.current.scrollHeight,
-      behavior: "smooth",
-    });
+    if (chatBodyRef.current) {
+      const chatBody = chatBodyRef.current as HTMLDivElement;
+      chatBody.scrollTo({
+        top: chatBody.scrollHeight,
+        behavior: "smooth",
+      });
+    }
   }, [chatHistory]);
 
   return (
@@ -90,12 +105,11 @@ const App = () => {
           <div className="message bot-message">
             <LuDog className="text-amber-400 w-6 h-6" />
             <p className="message-text">
-              ¡Hola! Soy el chatbot oficial de la Universidad de Bogotá Jorge
-              Tadeo Lozano (UTADEO). Estoy aquí para ayudarte con cualquier
-              información relacionada con nuestra universidad.
+              ¡Hola! Soy el chatbot de la Universidad Jorge Tadeo Lozano
+              (UTADEO). Estoy aquí para ayudarte con cualquier información
+              relacionada con nuestra universidad.
             </p>
           </div>
-          {/* Render the chat history dynamically */}
           {chatHistory.map((chat, index) => (
             <ChatMessage key={index} chat={chat} />
           ))}

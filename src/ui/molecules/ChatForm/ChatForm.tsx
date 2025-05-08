@@ -1,12 +1,13 @@
 import { useRef } from "react";
 import { IoMdSend } from "react-icons/io";
+import type { ChatHistory } from "../../../App";
 
 import "./ChatForm.css";
 
 interface ChatFormProps {
-  chatHistory: { role: string; text: string }[];
-  setChatHistory: (history: { role: string; text: string }[]) => void;
-  generateBotResponse: (history: { role: string; text: string }[]) => void;
+  chatHistory: ChatHistory[];
+  setChatHistory: React.Dispatch<React.SetStateAction<ChatHistory[]>>;
+  generateBotResponse: (history: ChatHistory[]) => void;
 }
 
 const ChatForm = ({
@@ -22,16 +23,16 @@ const ChatForm = ({
     if (!userMessage) return;
 
     inputRef.current!.value = "";
-    setChatHistory((history: { role: string; text: string }[]) => [
+    setChatHistory((history: ChatHistory[]) => [
       ...history,
-      { role: "user", text: userMessage },
+      { role: "user", text: userMessage, hideInChat: false },
     ]);
 
     // Delay 600 ms before showing "Thinking..." and generating response
     setTimeout(() => {
-      setChatHistory((history: { role: string; text: string }[]) => [
+      setChatHistory((history: ChatHistory[]) => [
         ...history,
-        { role: "model", text: "Thinking..." },
+        { role: "model", text: "...", hideInChat: false },
       ]);
 
       generateBotResponse([
@@ -39,6 +40,7 @@ const ChatForm = ({
         {
           role: "user",
           text: `Using the details provided above, please address this query: ${userMessage}`,
+          hideInChat: false,
         },
       ]);
     }, 600);
