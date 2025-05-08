@@ -1,54 +1,75 @@
-# React + TypeScript + Vite
+# Chateo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Chateo App es una aplicación de chat moderna construida con React y TypeScript, utilizando las últimas tecnologías y mejores prácticas de desarrollo.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologías
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [React](https://reactjs.org/) - Biblioteca JavaScript para construir interfaces de usuario
+- [TypeScript](https://www.typescriptlang.org/) - Superset tipado de JavaScript
+- [Vite](https://vitejs.dev/) - Herramienta de construcción frontend moderna
+- [TailwindCSS](https://tailwindcss.com/) - Framework CSS utilitario
+- [React Icons](https://react-icons.github.io/react-icons/) - Biblioteca de iconos para React
 
-## Expanding the ESLint configuration
+## 📦 Instalación
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Clona el repositorio:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone [URL_DEL_REPOSITORIO]
+cd chateo-app
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Instala las dependencias:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm install
 ```
+
+3. Inicia el servidor de desarrollo:
+
+```bash
+npm run dev
+```
+
+## 🛠️ Scripts Disponibles
+
+- `npm run dev` - Inicia el servidor de desarrollo
+- `npm run build` - Construye la aplicación para producción
+- `npm run lint` - Ejecuta el linter para verificar el código
+- `npm run preview` - Previsualiza la versión de producción localmente
+
+## 📁 Estructura del Proyecto
+
+```
+chateo-app/
+├── src/
+│   ├── assets/         # Recursos estáticos
+│   ├── ui/            # Componentes de la interfaz de usuario
+│   ├── App.tsx        # Componente principal
+│   ├── main.tsx       # Punto de entrada
+│   └── chatBotContext.ts # Contexto del chat
+├── public/            # Archivos públicos
+└── package.json       # Dependencias y scripts
+```
+
+## 🎨 Características
+
+- Interfaz de usuario moderna y responsiva
+- Sistema de chat en tiempo real
+- Diseño limpio y minimalista
+- Soporte para iconos y emojis
+- Optimizado para rendimiento
+
+## 🤝 Contribución
+
+Las contribuciones son bienvenidas. Por favor, asegúrate de:
+
+1. Hacer fork del proyecto
+2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir un Pull Request
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
