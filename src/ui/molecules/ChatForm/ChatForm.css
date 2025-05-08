@@ -1,0 +1,17 @@
+@reference "tailwindcss";
+
+.chat-form .message-input {
+  @apply w-full h-12 border-none outline-none text-sm p-3 bg-none;
+}
+
+.chat-form #send-message {
+  @apply h-8 w-8 border-none items-center justify-center text-white cursor-pointer hidden mr-2 bg-purple-600 rounded-full text-lg transition-all duration-200;
+}
+
+.chat-form .message-input:valid ~ #send-message {
+  @apply flex;
+}
+
+.chat-form #send-message:hover {
+  @apply bg-[#00558F];
+}
