@@ -1,0 +1,25 @@
+@reference "tailwindcss";
+
+.message {
+  @apply flex gap-2 items-center;
+}
+
+.message-text {
+  @apply p-3 max-w-[75%] text-sm break-words whitespace-pre-line;
+}
+
+.message.error .message-text {
+  @apply text-red-500;
+}
+
+.bot-message .message-text {
+  @apply bg-[#e6e7e9] rounded-l-lg;
+}
+
+.user-message {
+  @apply flex-col items-end;
+}
+
+.user-message .message-text {
+  @apply text-white bg-[#00558F] rounded-[13px];
+}
