@@ -47,16 +47,21 @@ const ChatForm = ({
   };
 
   return (
-    <form onSubmit={handleFormSubmit} className="chat-form">
-      <input
-        ref={inputRef}
-        placeholder="Message..."
-        className="message-input"
-        required
-      />
-      <button type="submit" id="send-message">
-        <IoMdSend />
-      </button>
+    <form
+      onSubmit={handleFormSubmit}
+      className="chat-form border-t border-gray-200"
+    >
+      <div className="flex items-center justify-between">
+        <input
+          ref={inputRef}
+          placeholder="Message..."
+          className="message-input"
+          required
+        />
+        <button type="submit" id="send-message">
+          <IoMdSend />
+        </button>
+      </div>
     </form>
   );
 };

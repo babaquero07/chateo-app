@@ -5,7 +5,7 @@
 }
 
 .chat-form #send-message {
-  @apply h-8 w-8 border-none items-center justify-center text-white cursor-pointer hidden mr-2 bg-purple-600 rounded-full text-lg transition-all duration-200;
+  @apply h-8 w-8 border-none items-center justify-center text-white cursor-pointer hidden mr-2 bg-[#00558F] rounded-full text-lg transition-all duration-200;
 }
 
 .chat-form .message-input:valid ~ #send-message {
@@ -13,5 +13,5 @@
 }
 
 .chat-form #send-message:hover {
-  @apply bg-[#00558F];
+  @apply bg-amber-400;
 }
