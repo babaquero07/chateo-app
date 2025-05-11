@@ -18,7 +18,7 @@
 }
 
 .chatbot-popup {
-  @apply fixed w-[420px] opacity-0 right-9 bottom-[90px] pointer-events-none scale-[20%] overflow-hidden bg-white rounded-lg transform origin-bottom-right shadow-lg transition-all duration-100;
+  @apply fixed w-[80%] md:w-[420px] opacity-0 right-9 bottom-[90px] pointer-events-none scale-[20%] overflow-hidden bg-white rounded-lg transform origin-bottom-right shadow-lg transition-all duration-100;
 }
 
 .container.show-chatbot .chatbot-popup {
