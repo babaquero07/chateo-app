@@ -54,7 +54,7 @@ const ChatForm = ({
       <div className="flex items-center justify-between">
         <input
           ref={inputRef}
-          placeholder="Message..."
+          placeholder="Escribe tu consulta..."
           className="message-input"
           required
         />
